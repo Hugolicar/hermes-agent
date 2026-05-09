@@ -117,6 +117,6 @@ RUN mkdir -p /app/templates && \
     curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/start.sh -o /app/start.sh && \
         chmod +x /app/start.sh && \
     ln -sf $(which python3) /usr/local/bin/python && \
-        uv pip install --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
+            pip3 install --break-system-packages --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
 
 CMD ["/app/start.sh"]
