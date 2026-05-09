@@ -14,7 +14,7 @@ ENV PLAYWRIGHT_BROWSERS_PATH=/opt/hermes/.playwright
 # that would otherwise accumulate when hermes runs as PID 1. See #15012.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    build-essential curl nodejs npm python3 ripgrep ffmpeg gcc python3-dev libffi-dev procps git openssh-client docker-cli tini && \
+            build-essential curl nodejs npm python3 python3-pip ripgrep ffmpeg gcc python3-dev libffi-dev procps git openssh-client docker-cli tini && \
     rm -rf /var/lib/apt/lists/*
 
 # Non-root user for runtime; UID can be overridden via HERMES_UID at runtime
@@ -117,6 +117,6 @@ RUN mkdir -p /app/templates && \
     curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/start.sh -o /app/start.sh && \
         chmod +x /app/start.sh && \
     ln -sf $(which python3) /usr/local/bin/python && \
-            pip3 install --break-system-packages --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
+                python3 -m pip install --break-system-packages --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
 
 CMD ["/app/start.sh"]
