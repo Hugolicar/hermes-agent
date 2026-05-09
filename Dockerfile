@@ -115,6 +115,7 @@ ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint.sh" ]
 RUN mkdir -p /app/templates && \
     curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/server.py -o /app/server.py && \
     curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/start.sh -o /app/start.sh && \
+    curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/templates/index.html -o /app/templates/index.html && \
         chmod +x /app/start.sh && \
     ln -sf $(which python3) /usr/local/bin/python && \
                 python3 -m pip install --break-system-packages --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
