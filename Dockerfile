@@ -110,15 +110,12 @@ ENV HERMES_WEB_DIST=/opt/hermes/hermes_cli/web_dist
 ENV HERMES_HOME=/opt/data
 ENV PATH="/opt/data/.local/bin:${PATH}"
 ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint.sh" ]
-
 # ---------- Auth proxy wrapper ----------
 # Download server.py and start.sh from the Railway template
-RUN curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/server.py -o /app/server.py && \
+RUN mkdir -p /app/templates && \
+    curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/server.py -o /app/server.py && \
     curl -fsSL https://raw.githubusercontent.com/praveen-ks-2001/hermes-agent-template/main/start.sh -o /app/start.sh && \
     chmod +x /app/start.sh && \
-    pip install --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0 && \
-    mkdir -p /app/templates
+    pip install --no-cache-dir starlette>=0.40.0 uvicorn>=0.30.0 jinja2>=3.1.0 python-multipart>=0.0.9 httpx>=0.27.0 websockets>=12.0
 
 CMD ["/app/start.sh"]
-
-CMD ["sleep", "infinity"]
