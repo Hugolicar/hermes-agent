@@ -1,0 +1,6 @@
+[build]
+builder = "dockerfile"
+
+[deploy]
+startCommand = "/opt/hermes/docker/entrypoint.sh gateway run"
+restartPolicyType = "on_failure"
